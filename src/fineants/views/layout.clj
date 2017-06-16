@@ -9,7 +9,7 @@
     [:meta {:name "viewport" :content
             "width=device-width, initial-scale=1, maximum-scale=1"}]
     [:title title]
-    #_(h/include-css "/assets/css/main.css")
+    (h/include-css "bower_components/bootstrap/dist/css/bootstrap.min.css")
     #_(h/include-css "http://fonts.googleapis.com/css?family=Sigmar+One&v1")]
    [:body
     [:div {:id "header"}
@@ -33,4 +33,4 @@
 
 (defn index []
   (base "FineAnts"
-        [:h4 "Awesome!"]))
+        [:h4 "Awesome!"]))u
