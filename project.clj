@@ -9,7 +9,8 @@
                  [ring/ring-jetty-adapter "1.6.1"]
                  [ring/ring-defaults "0.3.0"]
                  [compojure "1.6.0"]
-                 [hiccup "1.0.5"]]
+                 [hiccup "1.0.5"]
+                 [korma "0.4.3"]]
   :plugins [[lein-kibit "0.1.5"]
             [lein-ancient "0.6.10"]]
   :main ^:skip-aot fineants.core
