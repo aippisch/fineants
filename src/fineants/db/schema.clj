@@ -15,8 +15,47 @@
    [:created :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]])
 
 (def groupmembers
-  [[:group :serial "REFERENCES groups (id)"]
-   [:user :serial "REFERENCES users (id)"]])
+  [[:group :integer "REFERENCES groups (id)"]
+   [:user :integer "REFERENCES users (id)"]])
+
+(def transactions
+  [[:id :serial "PRIMARY KEY"]
+   [:key :integer "UNIQUE"]
+   [:group :integer "REFERENCES groups (id)"]
+   [:name :varchar "NOT NULL"]
+   [:amount :numeric "NOT NULL"]
+   [:currency "CHARACTER(3)" "NOT NULL"]
+   [:icon :integer "NOT NULL" "DEFAULT 0"]
+   [:date :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]
+   [:settle :boolean "NOT NULL" "DEFAULT FALSE"]
+   [:created :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]])
+
+(def payments
+  [[:transaction "REFERENCES transactions (id)"]
+   [:user "REFERENCES users (id)"]
+   [:amount :numeric "NOT NULL"]])
+
+(def debts
+  [[:transaction :integer "REFERENCES transactions (id)"]
+   [:user :integer "REFERENCES users (id)"]
+   [:amount :numeric "NOT NULL"]])
+
+(def contacts
+  [[:user :integer "REFERENCES users (id)"]
+   [:contact :integer "REFERENCES users (id)"]
+   [:created :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]])
+
+(def receipts
+  [[:id :serial "PRIMARY KEY"]
+   [:transaction "REFERENCES transactions (id)"]
+   [:receipt :varchar "NOT NULL"]
+   [:created :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]])
+
+(def comments
+  [[:id :serial "PRIMARY KEY"]
+   [:transaction "REFERENCES transactions (id)"]
+   [:comment :varchar "NOT NULL"]
+   [:created :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]])
 
 (defn migrated?
   "check if already migrated"
