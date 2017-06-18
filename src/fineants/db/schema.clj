@@ -66,17 +66,23 @@
                        (format "WHERE table_name='%s'" tablename))])
       first :count pos?))
 
+(def tables
+  {:users        users
+   :groups       groups
+   :groupmembers groupmembers
+   :transactions transactions
+   :payments     payments
+   :debts        debts
+   :contacts     contacts
+   :receipts     receipts
+   :comments     comments})
+
 (defn migrate []
   (print "creating database structure...") (flush)
-  (if (migrated? :users)
-    (sql/db-do-commands connect-string
-                        (sql/create-table-ddl :users users)))
-  (if (migrated? :groups)
-    (sql/db-do-commands connect-string
-                        (sql/create-table-ddl :groups groups)))
-  (if (migrated? :groupmembers)
-    (sql/db-do-commands connect-string
-                        (sql/create-table-ddl :groupmembers groupmembers)))
+  (for [[table spec] tables]
+    (if (migrated? table)
+      (sql/db-do-commands connect-string
+                          (sql/create-table-ddl table spec))))
   (println " done"))
 
 (def someusers
