@@ -1,6 +1,7 @@
-(ns fineants.db.entities)
-(use 'korma.core)
-(require '[fineants.db.db :refer [fadb fadb]])
+(ns fineants.db.entities
+  (:refer-clojure :exclude [update])
+  (:require [korma.core :refer :all])
+  (:require [fineants.db.db :refer [fadb fadb]]))
 
 (declare users groups)
 
