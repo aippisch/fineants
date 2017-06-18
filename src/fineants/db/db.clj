@@ -1,6 +1,6 @@
-(ns fineants.db.db)
-(use 'korma.db)
-(require '[clojure.string :as str])
+(ns fineants.db.db
+  (:refer-clojure :exclude [update])
+  (:require [korma.db :refer :all]))
 
 (defdb fadb (postgres {:db         "fineants"
                        :user       "fineants"
