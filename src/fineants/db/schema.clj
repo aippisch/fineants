@@ -1,5 +1,5 @@
-(ns fineants.db.schema)
-(require '[clojure.java.jdbc :as sql])
+(ns fineants.db.schema
+  (:require [clojure.java.jdbc :as sql]))
 
 (def connect-string "postgresql://fineants:YhTv2ejHdtK9f6i3q6bq2hCeRK@localhost:5432/fineants")
 
